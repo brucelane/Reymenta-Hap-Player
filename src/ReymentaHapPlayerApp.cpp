@@ -68,11 +68,11 @@ public:
 private:
 	// -------- SPOUT -------------
 	SpoutSender         spoutsender;                    // Create a Spout sender object
-	bool                bSenderInitialized;             // true if a sender initializes OK
+	bool                bInitialized;             // true if a sender initializes OK
 	bool                bMemoryMode;                    // tells us if texture share compatible
 	unsigned int        g_Width, g_Height;              // size of the texture being sent out
 	char                SenderName[256];                // sender name 
-	gl::TextureRef      spoutSenderTexture;             // Local Cinder texture used for sharing
+	gl::TextureRef      spoutTexture;             // Local Cinder texture used for sharing
 	bool bDoneOnce;                                     // only try to initialize once
 	int nSenders;
 	// ----------------------------
@@ -97,13 +97,14 @@ void ReymentaHapPlayerApp::setup()
 	// -------- SPOUT -------------
 	// Set up the texture we will use to send out
 	// We grab the screen so it has to be the same size
-	bSenderInitialized = false;
-	spoutSenderTexture = gl::Texture::create(g_Width, g_Height);
-	strcpy_s(SenderName, "CINDER Spout SDK Sender"); // we have to set a sender name first
+	bInitialized = false;
+	spoutTexture = gl::Texture::create(g_Width, g_Height);
+	strcpy_s(SenderName, "Reymenta Hap Spout Sender"); // we have to set a sender name first
 	// Optionally test for texture share compatibility
 	// bMemoryMode informs us whether Spout initialized for texture share or memory share
 	bMemoryMode = spoutsender.GetMemoryShareMode();
-
+	// Initialize a sender
+	bInitialized = spoutsender.CreateSender(SenderName, g_Width, g_Height);
 }
 void ReymentaHapPlayerApp::keyDown(KeyEvent event)
 {
@@ -166,7 +167,18 @@ void ReymentaHapPlayerApp::draw()
 	if (mMovie) {
 		mMovie->draw();
 	}
+	if (bInitialized)
+	{
+		// Grab the screen (current read buffer) into the local spout texture
+		spoutTexture->bind();
+		glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, g_Width, g_Height);
+		spoutTexture->unbind();
 
+		// Send the texture for all receivers to use
+		// NOTE : if SendTexture is called with a framebuffer object bound, that binding will be lost
+		// and has to be restored afterwards because Spout uses an fbo for intermediate rendering
+		spoutsender.SendTexture(spoutTexture->getId(), spoutTexture->getTarget(), g_Width, g_Height);
+	}
 	// draw fps
 	TextLayout infoFps;
 	infoFps.clear(ColorA(0.2f, 0.2f, 0.2f, 0.5f));
