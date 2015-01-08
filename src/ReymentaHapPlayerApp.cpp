@@ -4,7 +4,7 @@
 void ReymentaHapPlayerApp::prepareSettings(Settings *settings)
 {
 	g_Width = 640;
-	g_Height = 512;
+	g_Height = 480;
 	// parameters
 	mParameterBag = ParameterBag::create();
 	// utils
@@ -44,17 +44,23 @@ void ReymentaHapPlayerApp::setup()
 }
 void ReymentaHapPlayerApp::keyDown(KeyEvent event)
 {
-	/*if (event.getChar() == 'f') {
-		setFullScreen(!isFullScreen());
-	}
-	else */
-		if (event.getChar() == 'o') {
-		fs::path moviePath = getOpenFilePath();
+	fs::path moviePath;
+	switch (event.getCode())
+	{
+	case ci::app::KeyEvent::KEY_o:
+		moviePath = getOpenFilePath();
 		if (!moviePath.empty())
 			loadMovieFile(moviePath);
-	}
-	else if (event.getChar() == 'r') {
+		break;
+	case ci::app::KeyEvent::KEY_r:
 		mMovie.reset();
+		break;
+	case ci::app::KeyEvent::KEY_ESCAPE:
+		shutdown();
+		break;
+
+	default:
+		break;
 	}
 }
 void ReymentaHapPlayerApp::loadMovieFile(const fs::path &moviePath)
@@ -101,7 +107,7 @@ void ReymentaHapPlayerApp::draw()
 	gl::viewport(toPixels(getWindowSize()));
 
 	if (mMovie) {
-		mMovie->draw();
+		if (mMovie->isPlaying()) mMovie->draw();
 	}
 	if (bInitialized)
 	{
@@ -133,6 +139,7 @@ void ReymentaHapPlayerApp::mouseDown(MouseEvent event)
 void ReymentaHapPlayerApp::shutdown()
 {
 	spoutsender.ReleaseSender();
+	quit();
 }
 // This line tells Cinder to actually create the application
 CINDER_APP_NATIVE(ReymentaHapPlayerApp, RendererGl)
