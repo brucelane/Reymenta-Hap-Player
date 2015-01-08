@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8A5608B7-4586-4DE7-ADEF-B162F6878401}</ProjectGuid>
+    <ProjectGuid>{0E2D18B0-6882-4295-B642-D7E5C61AC90C}</ProjectGuid>
     <RootNamespace>ReymentaHapPlayer</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -50,7 +50,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\\include";"..\..\..\\boost";..\..\..\blocks\Cinder-Hap2\src;..\..\..\blocks\Cinder-Hap2\include\msw;..\..\..\blocks\Cinder-Spout\include;..\..\..\blocks\OSC\src;..\..\..\blocks\QuickTime\include\msw;..\..\..\blocks\QuickTime\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;"..\..\..\\include";"..\..\..\\boost";..\..\..\blocks\Cinder-Hap2\src;..\..\..\blocks\Cinder-Hap2\include\msw;..\..\..\blocks\Cinder-ImGui\lib\imgui;..\..\..\blocks\Cinder-Reymenta\include;..\..\..\blocks\Cinder-Reymenta\src;..\..\..\blocks\Cinder-Spout\include;..\..\..\blocks\OSC\src;..\..\..\blocks\QuickTime\include\msw;..\..\..\blocks\QuickTime\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NOMINMAX;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -80,7 +80,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\\include";"..\..\..\\boost";..\..\..\blocks\Cinder-Hap2\src;..\..\..\blocks\Cinder-Hap2\include\msw;..\..\..\blocks\Cinder-Spout\include;..\..\..\blocks\OSC\src;..\..\..\blocks\QuickTime\include\msw;..\..\..\blocks\QuickTime\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;"..\..\..\\include";"..\..\..\\boost";..\..\..\blocks\Cinder-Hap2\src;..\..\..\blocks\Cinder-Hap2\include\msw;..\..\..\blocks\Cinder-ImGui\lib\imgui;..\..\..\blocks\Cinder-Reymenta\include;..\..\..\blocks\Cinder-Reymenta\src;..\..\..\blocks\Cinder-Spout\include;..\..\..\blocks\OSC\src;..\..\..\blocks\QuickTime\include\msw;..\..\..\blocks\QuickTime\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NOMINMAX;_WIN32_WINNT=0x0502;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -118,6 +118,16 @@
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-Hap2\src\HapSupport.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-Hap2\src\MovieHap.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imgui.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\src\ImGuiCinder.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\AudioWrapper.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Batchass.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Logger.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\OSCWrapper.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\ParameterBag.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Shaders.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Textures.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Watchdog.h" />
     <ClInclude Include="..\..\..\blocks\OSC\src\OscArg.h" />
     <ClInclude Include="..\..\..\blocks\OSC\src\OscBundle.h" />
     <ClInclude Include="..\..\..\blocks\OSC\src\OscListener.h" />
@@ -141,6 +151,15 @@
     <ClCompile Include="..\src\ReymentaHapPlayerApp.cpp" />
     <ClCompile Include="..\..\..\blocks\Cinder-Hap2\src\MovieHap.cpp" />
     <ClCompile Include="..\..\..\blocks\Cinder-Hap2\src\HapSupport.c" />
+    <ClCompile Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-ImGui\src\ImGuiCinder.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\AudioWrapper.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Batchass.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Logger.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\OSCWrapper.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\ParameterBag.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Shaders.cpp" />
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Textures.cpp" />
     <ClCompile Include="..\..\..\blocks\OSC\src\OscBundle.cpp" />
     <ClCompile Include="..\..\..\blocks\OSC\src\OscListener.cpp" />
     <ClCompile Include="..\..\..\blocks\OSC\src\OscMessage.cpp" />

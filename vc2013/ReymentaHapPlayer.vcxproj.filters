@@ -13,28 +13,49 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Blocks">
-      <UniqueIdentifier>{4A0BC9F8-6725-4F4F-82A9-1C8F729C9AFE}</UniqueIdentifier>
+      <UniqueIdentifier>{5E628D0C-2A15-457E-8616-7C4BF7C0AEA7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Hap2">
-      <UniqueIdentifier>{653D1DD2-5D30-46E3-AAB7-F322F4D982C4}</UniqueIdentifier>
+      <UniqueIdentifier>{30806164-0C66-4515-ACF4-7D9586C199B4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Hap2\src">
-      <UniqueIdentifier>{86416EE7-4779-4AA7-9B7E-1317779A0D7C}</UniqueIdentifier>
+      <UniqueIdentifier>{F1C4FE81-A8B1-4BA6-BA26-3551630EB3D2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\imGui">
+      <UniqueIdentifier>{BD295C1F-8169-49C6-BCB4-AD4F082C384D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\imGui\lib">
+      <UniqueIdentifier>{2AA46E9B-41AA-4FA5-982D-AAFD5E6C8254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\imGui\lib\imgui">
+      <UniqueIdentifier>{C358FBB1-744F-4598-B86F-156C1382DC95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\imGui\src">
+      <UniqueIdentifier>{51E5CBC3-0EAF-4801-9B48-4BA27F7AE5E9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Reymenta">
+      <UniqueIdentifier>{A7073A3D-0040-4E0C-A81D-8F2142B092A9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Reymenta\include">
+      <UniqueIdentifier>{CD589998-1C9F-4809-A7DC-8D393E263608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\Reymenta\src">
+      <UniqueIdentifier>{A2F7B1D8-D2ED-477C-9A93-106C6FC6EFE3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\OSC">
-      <UniqueIdentifier>{47A345CE-273B-4DDA-A9A5-87275FC69075}</UniqueIdentifier>
+      <UniqueIdentifier>{6007729F-AC1D-412A-83F7-014BCFF54985}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\OSC\src">
-      <UniqueIdentifier>{AFE1B2BE-F61A-4426-BB9D-C5FABA683F60}</UniqueIdentifier>
+      <UniqueIdentifier>{5C27DDF2-177E-44FD-8653-DC8A382BAEF3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\OSC\src\ip">
-      <UniqueIdentifier>{599D7E2B-8FEC-42B4-9CC5-E676839DD7E5}</UniqueIdentifier>
+      <UniqueIdentifier>{1E72A85A-9A8F-4D2E-B12C-776705519537}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\OSC\src\osc">
-      <UniqueIdentifier>{F66A47A0-0CBA-4C19-A54A-3B92B70F6409}</UniqueIdentifier>
+      <UniqueIdentifier>{4E3E30DB-452F-4D6E-84A8-B595E1C97812}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\OSC\src\ip\win32">
-      <UniqueIdentifier>{775FB142-D4E2-47D3-B25C-A55FD6F55842}</UniqueIdentifier>
+      <UniqueIdentifier>{8E5F0C6B-7302-41E5-B942-6DBECB0DCE69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +80,63 @@
     <ClInclude Include="..\..\..\blocks\Cinder-Hap2\src\MovieHap.h">
       <Filter>Blocks\Cinder-Hap2\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imgui.h">
+      <Filter>Blocks\imGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imgui.cpp">
+      <Filter>Blocks\imGui\lib\imgui</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\src\ImGuiCinder.h">
+      <Filter>Blocks\imGui\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\blocks\Cinder-ImGui\src\ImGuiCinder.cpp">
+      <Filter>Blocks\imGui\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\AudioWrapper.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Batchass.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Logger.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\OSCWrapper.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\ParameterBag.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Shaders.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Textures.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Watchdog.h">
+      <Filter>Blocks\Reymenta\include</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\AudioWrapper.cpp">
+      <Filter>Blocks\Reymenta\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Batchass.cpp">
+      <Filter>Blocks\Reymenta\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Logger.cpp">
+      <Filter>Blocks\Reymenta\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\OSCWrapper.cpp">
+      <Filter>Blocks\Reymenta\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\ParameterBag.cpp">
+      <Filter>Blocks\Reymenta\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Shaders.cpp">
+      <Filter>Blocks\Reymenta\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Textures.cpp">
+      <Filter>Blocks\Reymenta\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\blocks\OSC\src\OscBundle.cpp">
       <Filter>Blocks\OSC\src</Filter>
     </ClCompile>
