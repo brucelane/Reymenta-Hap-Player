@@ -1,89 +1,23 @@
-/*
-
-Basic Spout app for Cinder
-
-Search for "SPOUT" to see what is required
-Uses the Spout dll
-
-Based on the RotatingBox CINDER example without much modification
-Nothing fancy about this, just the basics.
-
-Search for "SPOUT" to see what is required
-
-==========================================================================
-Copyright (C) 2014 Lynn Jarvis.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-==========================================================================
-
-*/
-
-#include "cinder/app/AppNative.h"
-#include "cinder/app/RendererGl.h"
-#include "cinder/Surface.h"
-#include "cinder/gl/Texture.h"
-#include "cinder/Text.h"
-#include "cinder/Utilities.h"
-#include "cinder/ImageIo.h"
-#include "cinder/Timer.h"
-
-#include "Resources.h"
-#include "MovieHap.h"
-
-// spout
-#include "spout.h"
-
-using namespace ci;
-using namespace ci::app;
-using namespace std;
-
-template <typename T> string tostr(const T& t, int p) { ostringstream os; os << std::setprecision(p) << std::fixed << t; return os.str(); }
-
-class ReymentaHapPlayerApp : public AppNative {
-public:
-	void prepareSettings(Settings *settings);
-	void setup();
-	void update();
-	void draw();
-	void mouseDown(MouseEvent event);
-	void keyDown(KeyEvent event) override;
-	void fileDrop(FileDropEvent event) override;
-	void shutdown();
-	void loadMovieFile(const fs::path &path);
-
-	gl::TextureRef			mInfoTexture;
-	qtime::MovieGlHapRef	mMovie;
-
-private:
-	// -------- SPOUT -------------
-	SpoutSender         spoutsender;                    // Create a Spout sender object
-	bool                bInitialized;             // true if a sender initializes OK
-	bool                bMemoryMode;                    // tells us if texture share compatible
-	unsigned int        g_Width, g_Height;              // size of the texture being sent out
-	char                SenderName[256];                // sender name 
-	gl::TextureRef      spoutTexture;             // Local Cinder texture used for sharing
-	bool bDoneOnce;                                     // only try to initialize once
-	int nSenders;
-	// ----------------------------
-};
+#include "ReymentaHapPlayerApp.h"
 
 // -------- SPOUT -------------
 void ReymentaHapPlayerApp::prepareSettings(Settings *settings)
 {
 	g_Width = 640;
 	g_Height = 512;
-	settings->setWindowSize(g_Width, g_Height);
+	// parameters
+	mParameterBag = ParameterBag::create();
+	// utils
+	mBatchass = Batchass::create(mParameterBag);
+	// if AutoLayout, try to position the window on the 2nd screen
+	if (mParameterBag->mAutoLayout)
+	{
+		mBatchass->getWindowsResolution();
+	}
+
+	settings->setWindowSize(mParameterBag->mRenderWidth, mParameterBag->mRenderHeight);
+	settings->setWindowPos(ivec2(mParameterBag->mRenderX, mParameterBag->mRenderY));
+
 	settings->setFullScreen(false);
 	settings->setResizable(false); // keep the screen size constant for a sender
 	settings->enableHighDensityDisplay();
@@ -94,6 +28,8 @@ void ReymentaHapPlayerApp::setup()
 {
 	setFrameRate(60);
 	setFpsSampleInterval(0.25);
+	mBatchass->setup();
+
 	// -------- SPOUT -------------
 	// Set up the texture we will use to send out
 	// We grab the screen so it has to be the same size
@@ -108,10 +44,11 @@ void ReymentaHapPlayerApp::setup()
 }
 void ReymentaHapPlayerApp::keyDown(KeyEvent event)
 {
-	if (event.getChar() == 'f') {
+	/*if (event.getChar() == 'f') {
 		setFullScreen(!isFullScreen());
 	}
-	else if (event.getChar() == 'o') {
+	else */
+		if (event.getChar() == 'o') {
 		fs::path moviePath = getOpenFilePath();
 		if (!moviePath.empty())
 			loadMovieFile(moviePath);
@@ -126,7 +63,7 @@ void ReymentaHapPlayerApp::loadMovieFile(const fs::path &moviePath)
 		mMovie.reset();
 		// load up the movie, set it to loop, and begin playing
 		mMovie = qtime::MovieGlHap::create(moviePath);
-		mMovie->setLoop();
+		mMovie->setLoop(false);
 		mMovie->play();
 
 		// create a texture for showing some info about the movie
@@ -154,8 +91,7 @@ void ReymentaHapPlayerApp::fileDrop(FileDropEvent event)
 }
 void ReymentaHapPlayerApp::update()
 {
-
-
+	getWindow()->setTitle("(" + toString(floor(getAverageFps())) + " fps) Reymenta Hap player");
 }
 
 void ReymentaHapPlayerApp::draw()
@@ -180,13 +116,13 @@ void ReymentaHapPlayerApp::draw()
 		spoutsender.SendTexture(spoutTexture->getId(), spoutTexture->getTarget(), g_Width, g_Height);
 	}
 	// draw fps
-	TextLayout infoFps;
+	/*TextLayout infoFps;
 	infoFps.clear(ColorA(0.2f, 0.2f, 0.2f, 0.5f));
 	infoFps.setColor(Color::white());
 	infoFps.addLine("Movie Framerate: " + tostr(mMovie->getPlaybackFramerate(), 1));
 	infoFps.addLine("App Framerate: " + tostr(this->getAverageFps(), 1));
 	infoFps.setBorder(4, 2);
-	gl::draw(gl::Texture::create(infoFps.render(true)), ivec2(20, 20));
+	gl::draw(gl::Texture::create(infoFps.render(true)), ivec2(20, 20));*/
 
 }
 void ReymentaHapPlayerApp::mouseDown(MouseEvent event)
