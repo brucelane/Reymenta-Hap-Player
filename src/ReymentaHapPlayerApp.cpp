@@ -29,7 +29,7 @@ void ReymentaHapPlayerApp::setup()
 	setFrameRate(60);
 	setFpsSampleInterval(0.25);
 	mBatchass->setup();
-
+	mLoopVideo = false;
 	// -------- SPOUT -------------
 	// Set up the texture we will use to send out
 	// We grab the screen so it has to be the same size
@@ -41,6 +41,10 @@ void ReymentaHapPlayerApp::setup()
 	bMemoryMode = spoutsender.GetMemoryShareMode();
 	// Initialize a sender
 	bInitialized = spoutsender.CreateSender(SenderName, g_Width, g_Height);
+	// instanciate the OSC class
+	mOSC = OSC::create(mParameterBag, mBatchass->mShaders, mBatchass->mTextures);
+	// Arguments
+	for (vector<string>::const_iterator argIt = getArgs().begin(); argIt != getArgs().end(); ++argIt) loadMovieFile(argIt[0]);
 }
 void ReymentaHapPlayerApp::keyDown(KeyEvent event)
 {
@@ -55,8 +59,21 @@ void ReymentaHapPlayerApp::keyDown(KeyEvent event)
 	case ci::app::KeyEvent::KEY_r:
 		mMovie.reset();
 		break;
+	case ci::app::KeyEvent::KEY_p:
+		if (mMovie) mMovie->play();
+		break;
+	case ci::app::KeyEvent::KEY_s:
+		if (mMovie) mMovie->stop();
+		break;
+	case ci::app::KeyEvent::KEY_SPACE:
+		if (mMovie->isPlaying()) mMovie->stop(); else mMovie->play();
+		break;
 	case ci::app::KeyEvent::KEY_ESCAPE:
 		shutdown();
+		break;
+	case ci::app::KeyEvent::KEY_l:
+		mLoopVideo = !mLoopVideo;
+		if (mMovie) mMovie->setLoop(mLoopVideo);
 		break;
 
 	default:
@@ -69,20 +86,8 @@ void ReymentaHapPlayerApp::loadMovieFile(const fs::path &moviePath)
 		mMovie.reset();
 		// load up the movie, set it to loop, and begin playing
 		mMovie = qtime::MovieGlHap::create(moviePath);
-		mMovie->setLoop(false);
+		mMovie->setLoop(mLoopVideo);
 		mMovie->play();
-
-		// create a texture for showing some info about the movie
-		TextLayout infoText;
-		infoText.clear(ColorA(0.2f, 0.2f, 0.2f, 0.5f));
-		infoText.setColor(Color::white());
-		infoText.addCenteredLine(moviePath.filename().string());
-		infoText.addLine(toString(mMovie->getWidth()) + " x " + toString(mMovie->getHeight()) + " pixels");
-		infoText.addLine(toString(mMovie->getDuration()) + " seconds");
-		infoText.addLine(toString(mMovie->getNumFrames()) + " frames");
-		infoText.addLine(toString(mMovie->getFramerate()) + " fps");
-		infoText.setBorder(4, 2);
-		mInfoTexture = gl::Texture::create(infoText.render(true));
 	}
 	catch (...) {
 		console() << "Unable to load the movie." << std::endl;
@@ -97,7 +102,9 @@ void ReymentaHapPlayerApp::fileDrop(FileDropEvent event)
 }
 void ReymentaHapPlayerApp::update()
 {
-	getWindow()->setTitle("(" + toString(floor(getAverageFps())) + " fps) Reymenta Hap player");
+	mOSC->update();
+
+	getWindow()->setTitle("(" + toString(floor(getAverageFps())) + " fps) Reymenta Hap" + toString(mLoopVideo));
 }
 
 void ReymentaHapPlayerApp::draw()
@@ -121,15 +128,6 @@ void ReymentaHapPlayerApp::draw()
 		// and has to be restored afterwards because Spout uses an fbo for intermediate rendering
 		spoutsender.SendTexture(spoutTexture->getId(), spoutTexture->getTarget(), g_Width, g_Height);
 	}
-	// draw fps
-	/*TextLayout infoFps;
-	infoFps.clear(ColorA(0.2f, 0.2f, 0.2f, 0.5f));
-	infoFps.setColor(Color::white());
-	infoFps.addLine("Movie Framerate: " + tostr(mMovie->getPlaybackFramerate(), 1));
-	infoFps.addLine("App Framerate: " + tostr(this->getAverageFps(), 1));
-	infoFps.setBorder(4, 2);
-	gl::draw(gl::Texture::create(infoFps.render(true)), ivec2(20, 20));*/
-
 }
 void ReymentaHapPlayerApp::mouseDown(MouseEvent event)
 {

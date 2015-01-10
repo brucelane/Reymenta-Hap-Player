@@ -45,6 +45,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "spout.h"
 // Utils
 #include "Batchass.h"
+// OSC
+#include "OSCWrapper.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -73,14 +75,17 @@ private:
 	ParameterBagRef				mParameterBag;
 	// utils
 	BatchassRef					mBatchass;
+	// osc
+	OSCRef						mOSC;
 	// -------- SPOUT -------------
-	SpoutSender         spoutsender;                    // Create a Spout sender object
-	bool                bInitialized;             // true if a sender initializes OK
-	bool                bMemoryMode;                    // tells us if texture share compatible
-	unsigned int        g_Width, g_Height;              // size of the texture being sent out
-	char                SenderName[256];                // sender name 
-	gl::TextureRef      spoutTexture;             // Local Cinder texture used for sharing
-	bool bDoneOnce;                                     // only try to initialize once
-	int nSenders;
+	SpoutSender					spoutsender;            // Create a Spout sender object
+	bool						bInitialized;           // true if a sender initializes OK
+	bool						bMemoryMode;            // tells us if texture share compatible
+	unsigned int				g_Width, g_Height;      // size of the texture being sent out
+	char						SenderName[256];        // sender name 
+	gl::TextureRef				spoutTexture;           // Local Cinder texture used for sharing
+	bool						bDoneOnce;				// only try to initialize once
+	int							nSenders;
 	// ----------------------------
+	bool						mLoopVideo;
 };
