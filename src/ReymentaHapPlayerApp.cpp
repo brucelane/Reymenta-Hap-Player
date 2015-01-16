@@ -41,8 +41,6 @@ void ReymentaHapPlayerApp::setup()
 	bMemoryMode = spoutsender.GetMemoryShareMode();
 	// Initialize a sender
 	bInitialized = spoutsender.CreateSender(SenderName, g_Width, g_Height);
-	// instanciate the OSC class
-	mOSC = OSC::create(mParameterBag, mBatchass->mShaders, mBatchass->mTextures);
 	// Arguments
 	for (vector<string>::const_iterator argIt = getArgs().begin(); argIt != getArgs().end(); ++argIt) loadMovieFile(argIt[0]);
 }
@@ -102,8 +100,6 @@ void ReymentaHapPlayerApp::fileDrop(FileDropEvent event)
 }
 void ReymentaHapPlayerApp::update()
 {
-	mOSC->update();
-
 	getWindow()->setTitle("(" + toString(floor(getAverageFps())) + " fps) Reymenta Hap" + toString(mLoopVideo));
 }
 

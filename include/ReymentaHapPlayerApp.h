@@ -45,8 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "spout.h"
 // Utils
 #include "Batchass.h"
-// OSC
-#include "OSCWrapper.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -75,8 +73,6 @@ private:
 	ParameterBagRef				mParameterBag;
 	// utils
 	BatchassRef					mBatchass;
-	// osc
-	OSCRef						mOSC;
 	// -------- SPOUT -------------
 	SpoutSender					spoutsender;            // Create a Spout sender object
 	bool						bInitialized;           // true if a sender initializes OK
