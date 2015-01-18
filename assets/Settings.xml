@@ -7,8 +7,8 @@
 	<RenderY value="40"/>
 	<FboWidth value="640"/>
 	<FboHeight value="480"/>
-	<OSCReceiverPort value="7000"/>
-	<OSCDestinationPort value="7005"/>
+	<OSCReceiverPort value="7019"/>
+	<OSCDestinationPort value="7018"/>
 	<OSCDestinationHost value="127.0.0.1"/>
 	<MIDIOpenAllInputPorts value="1"/>
 	<ShowUI value="0"/>
