@@ -84,6 +84,7 @@ void ReymentaHapPlayerApp::loadMovieFile(const fs::path &moviePath)
 		mMovie.reset();
 		// load up the movie, set it to loop, and begin playing
 		mMovie = qtime::MovieGlHap::create(moviePath);
+		mLoopVideo = (mMovie->getDuration() < 30.0f);
 		mMovie->setLoop(mLoopVideo);
 		mMovie->play();
 	}
