@@ -87,19 +87,10 @@
     <ClCompile Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imgui.cpp">
       <Filter>Blocks\imGui\lib\imgui</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\src\ImGuiCinder.h">
-      <Filter>Blocks\imGui\src</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\..\blocks\Cinder-ImGui\src\ImGuiCinder.cpp">
-      <Filter>Blocks\imGui\src</Filter>
-    </ClCompile>
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\AudioWrapper.h">
       <Filter>Blocks\Reymenta\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Batchass.h">
-      <Filter>Blocks\Reymenta\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Logger.h">
       <Filter>Blocks\Reymenta\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\OSCWrapper.h">
@@ -121,9 +112,6 @@
       <Filter>Blocks\Reymenta\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Batchass.cpp">
-      <Filter>Blocks\Reymenta\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Logger.cpp">
       <Filter>Blocks\Reymenta\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\OSCWrapper.cpp">
@@ -225,6 +213,9 @@
     <ClCompile Include="..\..\..\blocks\OSC\src\ip\win32\UdpSocket.cpp">
       <Filter>Blocks\OSC\src\ip\win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\blocks\Cinder-ImGui\src\CinderImGui.cpp">
+      <Filter>Blocks\imGui\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -232,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="..\include\ReymentaHapPlayerApp.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\include\CinderImGui.h">
+      <Filter>Blocks\imGui\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

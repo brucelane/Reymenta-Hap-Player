@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/Surface.h"
 #include "cinder/gl/Texture.h"
@@ -53,9 +53,8 @@ using namespace Reymenta;
 
 template <typename T> string tostr(const T& t, int p) { ostringstream os; os << std::setprecision(p) << std::fixed << t; return os.str(); }
 
-class ReymentaHapPlayerApp : public AppNative {
+class ReymentaHapPlayerApp : public App {
 public:
-	void prepareSettings(Settings *settings);
 	void setup();
 	void update();
 	void draw();

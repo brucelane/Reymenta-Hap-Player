@@ -1,7 +1,6 @@
 #include "ReymentaHapPlayerApp.h"
 
-// -------- SPOUT -------------
-void ReymentaHapPlayerApp::prepareSettings(Settings *settings)
+void ReymentaHapPlayerApp::setup()
 {
 	g_Width = 640;
 	g_Height = 480;
@@ -15,19 +14,12 @@ void ReymentaHapPlayerApp::prepareSettings(Settings *settings)
 		mBatchass->getWindowsResolution();
 	}
 
-	settings->setWindowSize(mParameterBag->mRenderWidth, mParameterBag->mRenderHeight);
-	settings->setWindowPos(ivec2(mParameterBag->mRenderX, mParameterBag->mRenderY));
+	setWindowSize(mParameterBag->mRenderWidth, mParameterBag->mRenderHeight);
+	setWindowPos(ivec2(mParameterBag->mRenderX, mParameterBag->mRenderY));
 
-	settings->setFullScreen(false);
-	settings->setResizable(false); // keep the screen size constant for a sender
-	settings->enableHighDensityDisplay();
-}
-// ----------------------------
-
-void ReymentaHapPlayerApp::setup()
-{
+	setFullScreen(false);
+	//enableHighDensityDisplay();	
 	setFrameRate(60);
-	setFpsSampleInterval(0.25);
 	mBatchass->setup();
 	mLoopVideo = false;
 	// -------- SPOUT -------------
@@ -41,8 +33,6 @@ void ReymentaHapPlayerApp::setup()
 	bMemoryMode = spoutsender.GetMemoryShareMode();
 	// Initialize a sender
 	bInitialized = spoutsender.CreateSender(SenderName, g_Width, g_Height);
-	// Arguments
-	for (vector<string>::const_iterator argIt = getArgs().begin(); argIt != getArgs().end(); ++argIt) loadMovieFile(argIt[0]);
 }
 void ReymentaHapPlayerApp::keyDown(KeyEvent event)
 {
@@ -88,7 +78,9 @@ void ReymentaHapPlayerApp::loadMovieFile(const fs::path &moviePath)
 		mMovie->setLoop(mLoopVideo);
 		mMovie->play();
 	}
-	catch (...) {
+	catch (ci::Exception &e)
+	{
+		console() <<  string(e.what()) << std::endl;
 		console() << "Unable to load the movie." << std::endl;
 		mInfoTexture.reset();
 	}
@@ -137,4 +129,4 @@ void ReymentaHapPlayerApp::shutdown()
 	quit();
 }
 // This line tells Cinder to actually create the application
-CINDER_APP_NATIVE(ReymentaHapPlayerApp, RendererGl)
+CINDER_APP(ReymentaHapPlayerApp, RendererGl)
