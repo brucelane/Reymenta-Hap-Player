@@ -26,13 +26,7 @@ void ReymentaHapPlayerApp::setup()
 	// Set up the texture we will use to send out
 	// We grab the screen so it has to be the same size
 	bInitialized = false;
-	spoutTexture = gl::Texture::create(g_Width, g_Height);
-	strcpy_s(SenderName, "Reymenta Hap Spout Sender"); // we have to set a sender name first
-	// Optionally test for texture share compatibility
-	// bMemoryMode informs us whether Spout initialized for texture share or memory share
-	bMemoryMode = spoutsender.GetMemoryShareMode();
-	// Initialize a sender
-	bInitialized = spoutsender.CreateSender(SenderName, g_Width, g_Height);
+
 }
 void ReymentaHapPlayerApp::keyDown(KeyEvent event)
 {
@@ -77,6 +71,19 @@ void ReymentaHapPlayerApp::loadMovieFile(const fs::path &moviePath)
 		mLoopVideo = (mMovie->getDuration() < 30.0f);
 		mMovie->setLoop(mLoopVideo);
 		mMovie->play();
+		g_Width = mMovie->getWidth();
+		g_Height = mMovie->getHeight();
+		if (!bInitialized) {
+			strcpy_s(SenderName, "Reymenta Hap Spout Sender"); // we have to set a sender name first
+			// Optionally test for texture share compatibility
+			// bMemoryMode informs us whether Spout initialized for texture share or memory share
+			//bMemoryMode = spoutsender.GetMemoryShareMode();
+		}
+		spoutTexture = gl::Texture::create(g_Width, g_Height);
+		setWindowSize(g_Width, g_Height);
+			// Initialize a sender
+			bInitialized = spoutsender.CreateSender(SenderName, g_Width, g_Height);
+
 	}
 	catch (ci::Exception &e)
 	{
@@ -99,8 +106,9 @@ void ReymentaHapPlayerApp::update()
 void ReymentaHapPlayerApp::draw()
 {
 	gl::clear(Color::black());
+	
 	gl::enableAlphaBlending();
-	gl::viewport(toPixels(getWindowSize()));
+	//gl::viewport(toPixels(getWindowSize()));
 
 	if (mMovie) {
 		if (mMovie->isPlaying()) mMovie->draw();

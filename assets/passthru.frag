@@ -1,13 +1,20 @@
-#version 110
-uniform vec3			iResolution;           // viewport resolution (in pixels)
-uniform sampler2D		iChannel0;
-uniform float			iGlobalTime;           // shader playback time (in seconds)
+// #include "precision.glsl"
 
-// main
-void main()
+uniform sampler2D uSampler;
+
+uniform int uMode;
+
+in Vertex
 {
-	// pass through
-	vec2 uv = gl_TexCoord[0].st * vec2(iResolution.x,iResolution.y);
-    gl_FragColor = texture2D(iChannel0, uv);
-	//gl_FragColor.a = 1.0;
+	vec2 	uv;
+} vertex;
+
+out vec4 oColor;
+
+void main( void )
+{
+	vec4 color 	= vec4( 1.0 );
+	color 	= vec4( texture( uSampler, vertex.uv ).xyz, 1.0 );
+
+	oColor 		= color;
 }

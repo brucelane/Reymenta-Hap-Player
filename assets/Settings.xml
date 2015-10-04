@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <settings>
-	<AutoLayout value="1"/>
+	<AutoLayout value="0"/>
 	<RenderWidth value="640"/>
 	<RenderHeight value="480"/>
 	<RenderX value="10"/>
