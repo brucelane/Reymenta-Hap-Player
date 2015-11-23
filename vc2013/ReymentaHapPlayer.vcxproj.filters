@@ -85,6 +85,9 @@
     <Filter Include="Blocks\Midi2\src">
       <UniqueIdentifier>{c6f6b3d2-b960-477c-a993-acf5a8e601cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blocks\imGui\include">
+      <UniqueIdentifier>{85480f44-6229-435f-afbd-2b21af4ed746}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\ReymentaHapPlayerApp.cpp">
@@ -246,9 +249,6 @@
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\JSONWrapper.cpp">
       <Filter>Blocks\Reymenta\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Logger.cpp">
-      <Filter>Blocks\Reymenta\src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\MessageRouter.cpp">
       <Filter>Blocks\Reymenta\src</Filter>
     </ClCompile>
@@ -305,13 +305,7 @@
     <ClInclude Include="..\include\ReymentaHapPlayerApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\include\CinderImGui.h">
-      <Filter>Blocks\imGui\src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\JSONWrapper.h">
-      <Filter>Blocks\Reymenta\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Logger.h">
       <Filter>Blocks\Reymenta\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\MessageRouter.h">
@@ -350,10 +344,27 @@
     <ClInclude Include="..\..\..\blocks\Cinder-MIDI2\lib\RtMidi.h">
       <Filter>Blocks\Midi2\lib</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imconfig.h">
+      <Filter>Blocks\imGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imgui_internal.h">
+      <Filter>Blocks\imGui\lib\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\include\CinderImGui.h">
+      <Filter>Blocks\imGui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\include\imgui_user.h">
+      <Filter>Blocks\imGui\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\blocks\Cinder-ImGui\include\imgui_user.inl">
+      <Filter>Blocks\imGui\include</Filter>
+    </None>
   </ItemGroup>
 </Project>

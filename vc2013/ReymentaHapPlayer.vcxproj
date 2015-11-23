@@ -41,10 +41,10 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">c:\tmp\vs\$(TargetName)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">c:\tmp\vs\$(TargetName)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -116,13 +116,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\blocks\Cinder-ImGui\include\CinderImGui.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\include\imgui_user.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imconfig.h" />
+    <ClInclude Include="..\..\..\blocks\Cinder-ImGui\lib\imgui\imgui_internal.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-MIDI2\include\CinderMidi.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-MIDI2\include\MidiExceptions.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-MIDI2\include\MidiHub.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-MIDI2\include\MidiOut.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-MIDI2\lib\RtMidi.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\JSONWrapper.h" />
-    <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\Logger.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\MessageRouter.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\SpoutWrapper.h" />
     <ClInclude Include="..\..\..\blocks\Cinder-Reymenta\include\WarpWrapper.h" />
@@ -170,7 +172,6 @@
     <ClCompile Include="..\..\..\blocks\Cinder-MIDI2\src\MidiHub.cpp" />
     <ClCompile Include="..\..\..\blocks\Cinder-MIDI2\src\MidiOut.cpp" />
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\JSONWrapper.cpp" />
-    <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\Logger.cpp" />
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\MessageRouter.cpp" />
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\SpoutWrapper.cpp" />
     <ClCompile Include="..\..\..\blocks\Cinder-Reymenta\src\WarpWrapper.cpp" />
@@ -202,6 +203,9 @@
     <ClCompile Include="..\..\..\blocks\OSC\src\osc\OscTypes.cpp" />
     <ClCompile Include="..\..\..\blocks\OSC\src\ip\win32\NetworkingUtils.cpp" />
     <ClCompile Include="..\..\..\blocks\OSC\src\ip\win32\UdpSocket.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\blocks\Cinder-ImGui\include\imgui_user.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
